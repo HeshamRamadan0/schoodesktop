@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="en-GB">
+  <Title Text="Dashboard" />
+  <DataSources>
+    <SqlDataSource ComponentName="dashboardSqlDataSource1">
+      <Name>SQL Data Source 1</Name>
+      <Connection Name="localhost_School_Connection" ProviderKey="MSSqlServer">
+        <Parameters>
+          <Parameter Name="server" Value="localhost" />
+          <Parameter Name="database" Value="School" />
+          <Parameter Name="useIntegratedSecurity" Value="True" />
+          <Parameter Name="read only" Value="1" />
+          <Parameter Name="generateConnectionHelper" Value="false" />
+          <Parameter Name="userid" Value="" />
+          <Parameter Name="password" Value="" />
+        </Parameters>
+      </Connection>
+      <Query Type="SelectQuery" Name="Student">
+        <Tables>
+          <Table Name="Student" X="30" Y="30" Width="125" Height="248" />
+        </Tables>
+        <Columns>
+          <Column Table="Student" Name="Student_ID" />
+          <Column Table="Student" Name="Student_Name" />
+          <Column Table="Student" Name="schoo_Year" />
+          <Column Table="Student" Name="grade" />
+          <Column Table="Student" Name="gander" />
+          <Column Table="Student" Name="BirthDay" />
+          <Column Table="Student" Name="Address" />
+          <Column Table="Student" Name="Email" />
+          <Column Table="Student" Name="phone_num" />
+          <Column Table="Student" Name="parent_num" />
+        </Columns>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL Data Source 1">
+          <View Name="Student">
+            <Field Name="Student_ID" Type="String" />
+            <Field Name="Student_Name" Type="String" />
+            <Field Name="schoo_Year" Type="String" />
+            <Field Name="grade" Type="String" />
+            <Field Name="gander" Type="String" />
+            <Field Name="BirthDay" Type="DateTime" />
+            <Field Name="Address" Type="String" />
+            <Field Name="Email" Type="String" />
+            <Field Name="phone_num" Type="String" />
+            <Field Name="parent_num" Type="String" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Pie ComponentName="pieDashboardItem1" Name="Pies 1" ShowCaption="false" Group="dashboardItemGroup1" DataSource="dashboardSqlDataSource1" DataMember="Student" PieType="Donut" ShowPieCaptions="false">
+      <DataItems>
+        <Dimension DataMember="grade" DefaultId="DataItem1" />
+        <Measure DataMember="Student_Name" SummaryType="Count" DefaultId="DataItem0" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+      </Arguments>
+      <Values>
+        <Value DefaultId="DataItem0" />
+      </Values>
+    </Pie>
+    <Chart ComponentName="chartDashboardItem1" Name="Chart 1" Group="dashboardItemGroup2" DataSource="dashboardSqlDataSource1" DataMember="Student">
+      <ColoringOptions MeasuresColoringMode="Hue" />
+      <DataItems>
+        <Measure DataMember="Student_Name" SummaryType="Count" DefaultId="DataItem0" />
+        <Dimension DataMember="gander" ColoringMode="Hue" DefaultId="DataItem1" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <AxisY TitleVisible="false" />
+          <Series>
+            <Simple>
+              <Value DefaultId="DataItem0" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+      <ChartLegend Visible="false" />
+    </Chart>
+    <Grid ComponentName="gridDashboardItem1" Name="Grid 1" ShowCaption="false" Group="dashboardItemGroup3" DataSource="dashboardSqlDataSource1" DataMember="Student">
+      <DataItems>
+        <Dimension DataMember="Student_ID" DefaultId="DataItem0" />
+        <Dimension DataMember="Student_Name" DefaultId="DataItem1" />
+        <Dimension DataMember="gander" DefaultId="DataItem3" />
+        <Dimension DataMember="grade" DefaultId="DataItem2" />
+        <Dimension DataMember="schoo_Year" DefaultId="DataItem4" />
+      </DataItems>
+      <GridColumns>
+        <GridDimensionColumn Weight="80.532212885154067">
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="95.238095238095241">
+          <Dimension DefaultId="DataItem1" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="61.274509803921568">
+          <Dimension DefaultId="DataItem3" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="56.022408963585434">
+          <Dimension DefaultId="DataItem2" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="81.9327731092437">
+          <Dimension DefaultId="DataItem4" />
+        </GridDimensionColumn>
+      </GridColumns>
+      <GridOptions EnableBandedRows="true" ColumnWidthMode="AutoFitToContents" />
+    </Grid>
+  </Items>
+  <Groups>
+    <Group ComponentName="dashboardItemGroup1" Name="Group 1" />
+    <Group ComponentName="dashboardItemGroup2" Name="Group 2" />
+    <Group ComponentName="dashboardItemGroup3" Name="Group 3" />
+  </Groups>
+  <LayoutTree>
+    <LayoutGroup Orientation="Vertical">
+      <LayoutGroup Weight="50.074962518740627">
+        <LayoutGroup Orientation="Vertical" DashboardItem="dashboardItemGroup1" Weight="49.95475113122172">
+          <LayoutItem DashboardItem="pieDashboardItem1" Weight="100" />
+        </LayoutGroup>
+        <LayoutGroup Orientation="Vertical" DashboardItem="dashboardItemGroup2" Weight="50.04524886877828">
+          <LayoutItem DashboardItem="chartDashboardItem1" Weight="100" />
+        </LayoutGroup>
+      </LayoutGroup>
+      <LayoutGroup Orientation="Vertical" DashboardItem="dashboardItemGroup3" Weight="49.925037481259373">
+        <LayoutItem DashboardItem="gridDashboardItem1" Weight="100" />
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

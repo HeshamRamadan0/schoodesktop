@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="en-GB">
+  <Title Text="Dashboard" />
+  <DataSources>
+    <SqlDataSource ComponentName="dashboardSqlDataSource1">
+      <Name>SQL Data Source 1</Name>
+      <Connection Name="localhost_School_Connection" ProviderKey="MSSqlServer">
+        <Parameters>
+          <Parameter Name="server" Value="localhost" />
+          <Parameter Name="database" Value="School" />
+          <Parameter Name="useIntegratedSecurity" Value="True" />
+          <Parameter Name="read only" Value="1" />
+          <Parameter Name="generateConnectionHelper" Value="false" />
+        </Parameters>
+      </Connection>
+      <Query Type="SelectQuery" Name="Teacher">
+        <Tables>
+          <Table Name="Teacher" X="30" Y="30" Width="125" Height="248" />
+        </Tables>
+        <Columns>
+          <Column Table="Teacher" Name="Teacher_id" />
+          <Column Table="Teacher" Name="Teacher_name" />
+          <Column Table="Teacher" Name="Subject" />
+          <Column Table="Teacher" Name="Salary" />
+          <Column Table="Teacher" Name="Gander" />
+          <Column Table="Teacher" Name="BirthDay" />
+          <Column Table="Teacher" Name="email" />
+          <Column Table="Teacher" Name="address" />
+          <Column Table="Teacher" Name="Phone_num" />
+          <Column Table="Teacher" Name="Evaluation" />
+        </Columns>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL Data Source 1">
+          <View Name="Teacher">
+            <Field Name="Teacher_id" Type="String" />
+            <Field Name="Teacher_name" Type="String" />
+            <Field Name="Subject" Type="String" />
+            <Field Name="Salary" Type="Decimal" />
+            <Field Name="Gander" Type="String" />
+            <Field Name="BirthDay" Type="DateTime" />
+            <Field Name="email" Type="String" />
+            <Field Name="address" Type="String" />
+            <Field Name="Phone_num" Type="String" />
+            <Field Name="Evaluation" Type="String" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Pie ComponentName="pieDashboardItem1" Name="Pies 1" Group="dashboardItemGroup1" DataSource="dashboardSqlDataSource1" DataMember="Teacher" PieType="Donut" ShowPieCaptions="false">
+      <DataItems>
+        <Dimension DataMember="Teacher_name" DefaultId="DataItem0" />
+        <Measure DataMember="Salary" DefaultId="DataItem1" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem0" />
+      </Arguments>
+      <Values>
+        <Value DefaultId="DataItem1" />
+      </Values>
+    </Pie>
+    <Chart ComponentName="chartDashboardItem1" Name="Chart 1" Group="dashboardItemGroup2" DataSource="dashboardSqlDataSource1" DataMember="Teacher">
+      <DataItems>
+        <Dimension DataMember="Gander" ColoringMode="Hue" DefaultId="DataItem1" />
+        <Measure DataMember="Teacher_name" SummaryType="Count" DefaultId="DataItem0" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple>
+              <Value DefaultId="DataItem0" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+    <Grid ComponentName="gridDashboardItem1" Name="Grid 1" Group="dashboardItemGroup3" DataSource="dashboardSqlDataSource1" DataMember="Teacher">
+      <DataItems>
+        <Dimension DataMember="Teacher_id" DefaultId="DataItem0" />
+        <Dimension DataMember="Teacher_name" DefaultId="DataItem1" />
+        <Dimension DataMember="Subject" DefaultId="DataItem2" />
+        <Dimension DataMember="Evaluation" DefaultId="DataItem3" />
+      </DataItems>
+      <GridColumns>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem1" />
+        </GridDimensionColumn>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem3" />
+        </GridDimensionColumn>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem2" />
+        </GridDimensionColumn>
+      </GridColumns>
+      <GridOptions />
+    </Grid>
+    <Pie ComponentName="pieDashboardItem2" Name="Pies 2" Group="dashboardItemGroup4" DataSource="dashboardSqlDataSource1" DataMember="Teacher" LabelContentType="None">
+      <DataItems>
+        <Measure DataMember="Evaluation" SummaryType="Count" DefaultId="DataItem2" />
+        <Dimension DataMember="Teacher_name" DefaultId="DataItem0" />
+        <Dimension DataMember="Evaluation" DefaultId="DataItem1" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem0" />
+        <Argument DefaultId="DataItem1" />
+      </Arguments>
+      <Values>
+        <Value DefaultId="DataItem2" />
+      </Values>
+    </Pie>
+  </Items>
+  <Groups>
+    <Group ComponentName="dashboardItemGroup1" Name="Group 1" />
+    <Group ComponentName="dashboardItemGroup2" Name="Group 2" />
+    <Group ComponentName="dashboardItemGroup3" Name="Group 3" />
+    <Group ComponentName="dashboardItemGroup4" Name="Group 4" />
+  </Groups>
+  <LayoutTree>
+    <LayoutGroup Orientation="Vertical">
+      <LayoutGroup Weight="50.074962518740627">
+        <LayoutGroup Orientation="Vertical" DashboardItem="dashboardItemGroup1" Weight="49.95475113122172">
+          <LayoutItem DashboardItem="pieDashboardItem1" Weight="100" />
+        </LayoutGroup>
+        <LayoutGroup Orientation="Vertical" DashboardItem="dashboardItemGroup2" Weight="50.04524886877828">
+          <LayoutItem DashboardItem="chartDashboardItem1" Weight="100" />
+        </LayoutGroup>
+      </LayoutGroup>
+      <LayoutGroup Weight="49.925037481259373">
+        <LayoutGroup Orientation="Vertical" DashboardItem="dashboardItemGroup3" Weight="49.95475113122172">
+          <LayoutItem DashboardItem="gridDashboardItem1" Weight="100" />
+        </LayoutGroup>
+        <LayoutGroup Orientation="Vertical" DashboardItem="dashboardItemGroup4" Weight="50.04524886877828">
+          <LayoutItem DashboardItem="pieDashboardItem2" Weight="100" />
+        </LayoutGroup>
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>
